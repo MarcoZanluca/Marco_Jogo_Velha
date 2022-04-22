@@ -14,9 +14,16 @@ type
 
     TJogador2 = array[0..1] of Jogador;
 
+    Jogada = Record
+      i: integer;
+      j: integer;
+    End;
+
+
 function zerar(var t: tabuleiro): tabuleiro;
 function imprimir(t: tabuleiro): tabuleiro;
 procedure criar_jogadores(var jogadores: TJogador2);
+function aguardar_jogada(jogador: jogador): jogada;
 
 implementation
 
@@ -47,13 +54,21 @@ begin
   writeln(' ');
 end;
 
-procedure criar_jogadores(jogadores: TJogador2);
+procedure criar_jogadores(var jogadores: TJogador2);
 begin
   jogadores[0].nome := 'A';
   jogadores[0].simbolo := 'X';
 
   jogadores[1].nome := 'B';
   jogadores[1].simbolo := 'O';
+end;
+
+function aguardar_jogada(jogador: jogador): jogada;
+jogada: jogada;
+begin
+  read('Jogador '+ jogador.nome +' => Linha', jogada.i);
+  read('Jogador '+ jogador.nome +' => Coluna', jogada.j);
+  result := jogada;
 end;
 
 end.
