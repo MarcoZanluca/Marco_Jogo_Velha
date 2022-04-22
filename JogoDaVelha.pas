@@ -2,51 +2,56 @@ unit JogoDaVelha;
 
 interface
 
+uses
+  SysUtils
+  ,Math
+  ;
 type
-    Tabuleiro = Record
-       m: array [0..2, 0..2] of string;
+    TipoTabuleiro = class {TODO -oDouglas -cTreinamento : Mudar para classe}
+       matriz: array [0..2, 0..2] of string;
     End;
 
-    Jogador = Record
+    TipoJogador = class
       nome   : string;
       simbolo: string;
     End;
 
-    TJogador2 = array[0..1] of Jogador;
+    TipoJogador2 = array[0..1] of TipoJogador;
 
-    Jogada = Record
+    TipoJogada = class
       i: integer;
       j: integer;
     End;
 
 
-function zerar(var t: tabuleiro): tabuleiro;
-function imprimir(t: tabuleiro): tabuleiro;
-procedure criar_jogadores(var jogadores: TJogador2);
-function aguardar_jogada(jogador: jogador): jogada;
+function zerar(tabuleiro: TipoTabuleiro): TipoTabuleiro;  {TODO -oDouglas -cTreinamento : Mudei os tipos se vira}
+function imprimir(tabuleiro: TipoTabuleiro): TipoTabuleiro;
+procedure criar_jogadores(jogadores: TipoJogador2);
+
+function aguardar_jogada(jogador: TipoJogador): TipoJogada;
 
 implementation
 
-function zerar(var t: tabuleiro): tabuleiro;
+function zerar(tabuleiro: TipoTabuleiro): TipoTabuleiro;
 var i, j: integer;
 begin
   for i := 0 to 2 do
      begin
        for j := 0 to 2 do
-           t.m[i][j] := ' ';
+           tabuleiro.matriz[i][j] := ' ';
      end;
 end;
 
-function imprimir(t: tabuleiro): tabuleiro;
+function imprimir(tabuleiro: TipoTabuleiro): TipoTabuleiro;
 var i: integer;
 begin
   for i := 0 to 2 do
       begin
-        write(t.m[i][0]);
+        write(tabuleiro.matriz[i][0]);
         write(' | ');
-        write(t.m[i][1]);
+        write(tabuleiro.matriz[i][1]);
         write(' | ');
-        writeln(t.m[i][2]);
+        writeln(tabuleiro.matriz[i][2]);
 
         if (i < 2) then
            writeln('---------');
@@ -54,7 +59,7 @@ begin
   writeln(' ');
 end;
 
-procedure criar_jogadores(var jogadores: TJogador2);
+procedure criar_jogadores(jogadores: TipoJogador2);
 begin
   jogadores[0].nome := 'A';
   jogadores[0].simbolo := 'X';
@@ -63,11 +68,17 @@ begin
   jogadores[1].simbolo := 'O';
 end;
 
-function aguardar_jogada(jogador: jogador): jogada;
-jogada: jogada;
+function aguardar_jogada(jogador: TipoJogador): TipoJogada;
+var jogada: TipoJogada;
 begin
-  read('Jogador '+ jogador.nome +' => Linha', jogada.i);
-  read('Jogador '+ jogador.nome +' => Coluna', jogada.j);
+  jogada := TipoJogada.Create;
+
+  writeln('Jogador '+ jogador.nome + ' => Linha: ' );
+  read(jogada.i);
+
+  writeln('Jogador '+ jogador.nome + ' => Coluna: ' );
+  read(jogada.j);
+
   result := jogada;
 end;
 
