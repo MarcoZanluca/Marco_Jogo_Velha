@@ -26,9 +26,13 @@ type
 
 function zerar(tabuleiro: TipoTabuleiro): TipoTabuleiro;  {DONE -oDouglas -cTreinamento : Mudei os tipos se vira}
 function imprimir(tabuleiro: TipoTabuleiro): TipoTabuleiro;
-procedure criar_jogadores(jogadores: TipoJogador2);
 
+procedure criar_jogadores(jogadores: TipoJogador2);
 function aguardar_jogada(jogador: TipoJogador): TipoJogada;
+procedure realizar_jogada(tabuleiro: TipoTabuleiro; jogada: TipoJogada; jogador: TipoJogador);
+
+function tabuleiro_cheio(tabuleiro: TipoTabuleiro): boolean;
+function jogo_acabou(tabuleiro: TipoTabuleiro): boolean;
 
 implementation
 
@@ -77,6 +81,23 @@ begin
 
   writeln('Jogador '+ jogador.nome + ' => Coluna: ' );
   read(Result.j);
+end;
+
+procedure realizar_jogada(tabuleiro: TipoTabuleiro; jogada: TipoJogada; jogador: TipoJogador);
+begin
+  tabuleiro.matriz[jogada.i][jogada.j] := jogador.simbolo;
+end;
+
+function tabuleiro_cheio(tabuleiro: TipoTabuleiro): boolean;
+begin
+// VOLTAR AQUI...
+  result := false;
+end;
+
+function jogo_acabou(tabuleiro: TipoTabuleiro): boolean;
+begin
+// VOLTAR AQUI...
+  result := false;
 end;
 
 end.

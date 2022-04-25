@@ -21,8 +21,16 @@ begin
   criar_jogadores(jogadores);
   imprimir(tabuleiro);
 
-  jogada := aguardar_jogada(jogadores[0]);
-  writeln(' i: ' + IntToStr(jogada.i) + ' - j: ' + IntToStr(jogada.j));
+  while (not tabuleiro_cheio(tabuleiro) and not jogo_acabou(tabuleiro)) do
+  begin
+    jogada := aguardar_jogada(jogadores[0]);
+
+    realizar_jogada(tabuleiro, jogada, jogadores[0]);
+    imprimir(tabuleiro);
+  end;
+  
+
+//  writeln(' i: ' + IntToStr(jogada.i) + ' - j: ' + IntToStr(jogada.j));
 
 
 
