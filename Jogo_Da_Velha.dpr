@@ -11,7 +11,7 @@ var tabuleiro: TipoTabuleiro;
     jogada: TipoJogada;
 
 begin
-  {TODO -oDouglas -cTreinamento : Aqui voce vai criar}
+  {DONE -oDouglas -cTreinamento : Aqui voce vai criar}
   tabuleiro := TipoTabuleiro.Create;
   jogadores[0] := TipoJogador.Create;
   jogadores[1] := TipoJogador.Create;
@@ -21,13 +21,15 @@ begin
   criar_jogadores(jogadores);
   imprimir(tabuleiro);
 
-  jogada := aguardar_jogada(jogadores[0]); // ***REVESAR QUE ESTÁ DANDO ERRO***
-  writeln(jogada);                         // """""""""""""""""""""""""""""""""
+  jogada := aguardar_jogada(jogadores[0]);
+  writeln(' i: ' + IntToStr(jogada.i) + ' - j: ' + IntToStr(jogada.j));
 
-  readln;
+
 
   jogadores[0].Free;
   jogadores[1].Free;
+
+  readln;
 
   //jogada.Free ?   {TODO -oDouglas -cTreinamento : sera que vamos liberar aqui ???}
 end.

@@ -7,7 +7,7 @@ uses
   ,Math
   ;
 type
-    TipoTabuleiro = class {TODO -oDouglas -cTreinamento : Mudar para classe}
+    TipoTabuleiro = class {DONE -oDouglas -cTreinamento : Mudar para classe}
        matriz: array [0..2, 0..2] of string;
     End;
 
@@ -24,7 +24,7 @@ type
     End;
 
 
-function zerar(tabuleiro: TipoTabuleiro): TipoTabuleiro;  {TODO -oDouglas -cTreinamento : Mudei os tipos se vira}
+function zerar(tabuleiro: TipoTabuleiro): TipoTabuleiro;  {DONE -oDouglas -cTreinamento : Mudei os tipos se vira}
 function imprimir(tabuleiro: TipoTabuleiro): TipoTabuleiro;
 procedure criar_jogadores(jogadores: TipoJogador2);
 
@@ -69,17 +69,14 @@ begin
 end;
 
 function aguardar_jogada(jogador: TipoJogador): TipoJogada;
-var jogada: TipoJogada;
 begin
-  jogada := TipoJogada.Create;
+  Result := TipoJogada.Create;
 
   writeln('Jogador '+ jogador.nome + ' => Linha: ' );
-  read(jogada.i);
+  read(Result.i);
 
   writeln('Jogador '+ jogador.nome + ' => Coluna: ' );
-  read(jogada.j);
-
-  result := jogada;
+  read(Result.j);
 end;
 
 end.
