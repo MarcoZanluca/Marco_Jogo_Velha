@@ -29,7 +29,7 @@ function imprimir(tabuleiro: TipoTabuleiro): TipoTabuleiro;
 
 procedure criar_jogadores(jogadores: TipoJogador2);
 function aguardar_jogada(jogador: TipoJogador): TipoJogada;
-procedure realizar_jogada(tabuleiro: TipoTabuleiro; jogada: TipoJogada; jogador: TipoJogador);
+function realizar_jogada(tabuleiro: TipoTabuleiro; jogada: TipoJogada; jogador: TipoJogador): boolean;
 
 function tabuleiro_cheio(tabuleiro: TipoTabuleiro): boolean;
 function jogo_acabou(tabuleiro: TipoTabuleiro): boolean;
@@ -83,9 +83,17 @@ begin
   read(Result.j);
 end;
 
-procedure realizar_jogada(tabuleiro: TipoTabuleiro; jogada: TipoJogada; jogador: TipoJogador);
+function realizar_jogada(tabuleiro: TipoTabuleiro; jogada: TipoJogada; jogador: TipoJogador): boolean;
 begin
-  tabuleiro.matriz[jogada.i][jogada.j] := jogador.simbolo;
+  result:= true;
+  If   (tabuleiro.matriz[jogada.i][jogada.j] <> ' ') then
+       result := false;
+
+  If   result then
+       begin
+         tabuleiro.matriz[jogada.i][jogada.j] := jogador.simbolo;
+         result := true;
+       end;
 end;
 
 function tabuleiro_cheio(tabuleiro: TipoTabuleiro): boolean;
