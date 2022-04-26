@@ -7,7 +7,7 @@ uses
   ,Math
   ;
 type
-    TipoTabuleiro = class {DONE -oDouglas -cTreinamento : Mudar para classe}
+    TipoTabuleiro = class
        matriz: array [0..2, 0..2] of string;
     End;
 
@@ -24,7 +24,7 @@ type
     End;
 
 
-function zerar(tabuleiro: TipoTabuleiro): TipoTabuleiro;  {DONE -oDouglas -cTreinamento : Mudei os tipos se vira}
+function zerar(tabuleiro: TipoTabuleiro): TipoTabuleiro;
 function imprimir(tabuleiro: TipoTabuleiro): TipoTabuleiro;
 
 procedure criar_jogadores(jogadores: TipoJogador2);
@@ -92,20 +92,61 @@ begin
   If   result then
        begin
          tabuleiro.matriz[jogada.i][jogada.j] := jogador.simbolo;
-         result := true;
        end;
 end;
 
 function tabuleiro_cheio(tabuleiro: TipoTabuleiro): boolean;
+var i, j: integer;
 begin
-// VOLTAR AQUI...
-  result := false;
+  result := true;
+  for   i := 0 to 2 do
+        begin
+          for   j := 0 to 2 do
+                begin
+                  if  tabuleiro.matriz[i][j] = ' ' Then
+                      result := false;
+                end;
+        end;
 end;
 
 function jogo_acabou(tabuleiro: TipoTabuleiro): boolean;
 begin
-// VOLTAR AQUI...
-  result := false;
-end;
 
+result := false;
+
+
+//Diagonal 1
+  if   ((tabuleiro.matriz[0][0] = tabuleiro.matriz[1][1]) and (tabuleiro.matriz[0][0] = tabuleiro.matriz[2][2]) and (tabuleiro.matriz[0][0] <> ' ')) then
+       result := true;
+
+//Diagonal 2
+  if   ((tabuleiro.matriz[0][2] = tabuleiro.matriz[1][1]) and (tabuleiro.matriz[0][2] = tabuleiro.matriz[2][0]) and (tabuleiro.matriz[0][2] <> ' ')) then
+       result := true;
+
+//Coluna 1
+  if   ((tabuleiro.matriz[0][0] = tabuleiro.matriz[1][0]) and (tabuleiro.matriz[0][0] = tabuleiro.matriz[2][0]) and (tabuleiro.matriz[0][0] <> ' ')) then
+       result := true;
+
+//Coluna 2
+  if   ((tabuleiro.matriz[0][1] = tabuleiro.matriz[1][1]) and (tabuleiro.matriz[0][1] = tabuleiro.matriz[2][1]) and (tabuleiro.matriz[0][1] <> ' ')) then
+       result := true;
+
+//Coluna 3
+  if   ((tabuleiro.matriz[0][2] = tabuleiro.matriz[1][2]) and (tabuleiro.matriz[0][2] = tabuleiro.matriz[2][2]) and (tabuleiro.matriz[0][2] <> ' ')) then
+       result := true;
+
+//Linha 1
+  if   ((tabuleiro.matriz[0][0] = tabuleiro.matriz[0][1]) and (tabuleiro.matriz[0][0] = tabuleiro.matriz[0][2]) and (tabuleiro.matriz[0][0] <> ' ')) then
+       result := true;
+
+//Linha 2
+  if   ((tabuleiro.matriz[1][0] = tabuleiro.matriz[1][1]) and (tabuleiro.matriz[1][0] = tabuleiro.matriz[1][2]) and (tabuleiro.matriz[1][0] <> ' ')) then
+       result := true;
+
+//Linha 3
+  if   ((tabuleiro.matriz[2][0] = tabuleiro.matriz[2][1]) and (tabuleiro.matriz[2][0] = tabuleiro.matriz[2][2]) and (tabuleiro.matriz[2][0] <> ' ')) then
+       begin
+         result := true;
+       end;
+end;
 end.

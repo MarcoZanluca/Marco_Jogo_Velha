@@ -10,9 +10,9 @@ var tabuleiro: TipoTabuleiro;
     jogadores: TipoJogador2;
     jogada: TipoJogada;
     numero_jogador: integer;
+    ganhador: TipoJogador;
 
 begin
-  {DONE -oDouglas -cTreinamento : Aqui voce vai criar}
   tabuleiro := TipoTabuleiro.Create;
   jogadores[0] := TipoJogador.Create;
   jogadores[1] := TipoJogador.Create;
@@ -26,35 +26,41 @@ begin
   begin
     jogada := aguardar_jogada(jogadores[numero_jogador]);
 
-    if realizar_jogada(tabuleiro, jogada, jogadores[numero_jogador]) then
-       begin
-         imprimir(tabuleiro);
-         numero_jogador := (numero_jogador + 1) mod 2;
-       end
+    if   realizar_jogada(tabuleiro, jogada, jogadores[numero_jogador]) then
+         begin
+           imprimir(tabuleiro);
+           numero_jogador := (numero_jogador + 1) mod 2;
+         end
     else
-       begin
-         writeln('');
-         writeln('---------------------------------');
-         writeln('Jogada invalida. Tente novamente.');
-         writeln('---------------------------------');
-         writeln('');
-       end;
+         begin
+           writeln('');
+           writeln('---------------------------------');
+           writeln('Jogada invalida. Tente novamente.');
+           writeln('---------------------------------');
+           writeln('');
+         end;
 
+    if   (jogo_acabou(tabuleiro)) then
+         begin
+           numero_jogador := (numero_jogador + 1) mod 2;
+           ganhador := jogadores[numero_jogador];
 
-
-
-
-//    if (numero_jogador = 0) then
-//        numero_jogador := 1
-//    else
-//        numero_jogador := 0;
+           writeln('');
+           writeln('-------------------');
+           writeln('O jogador ' + ganhador.nome + ' ganhou!');
+           writeln('-------------------');
+           writeln('');
+         end
+   else
+         begin
+           writeln('');
+           writeln('-------------');
+           writeln('Ninguem venceu');
+           writeln('-------------');
+           writeln('');
+         end;
 
   end;
-
-
-//  writeln(' i: ' + IntToStr(jogada.i) + ' - j: ' + IntToStr(jogada.j));
-
-
 
   jogadores[0].Free;
   jogadores[1].Free;
