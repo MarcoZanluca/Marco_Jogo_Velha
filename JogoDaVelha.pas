@@ -65,10 +65,10 @@ end;
 
 procedure criar_jogadores(jogadores: TipoJogador2);
 begin
-  jogadores[0].nome := 'A';
+  jogadores[0].nome := 'X';
   jogadores[0].simbolo := 'X';
 
-  jogadores[1].nome := 'B';
+  jogadores[1].nome := 'Bolinha';
   jogadores[1].simbolo := 'O';
 end;
 
@@ -76,10 +76,10 @@ function aguardar_jogada(jogador: TipoJogador): TipoJogada;
 begin
   Result := TipoJogada.Create;
 
-  writeln('Jogador '+ jogador.nome + ' => Linha: ' );
+  writeln('Vez de ' + jogador.nome + ' => Linha: ' );
   read(Result.i);
 
-  writeln('Jogador '+ jogador.nome + ' => Coluna: ' );
+  writeln('Vez de '+ jogador.nome + ' => Coluna: ' );
   read(Result.j);
 end;
 
